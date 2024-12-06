@@ -3,7 +3,7 @@ function dijkstra(graph, sourceNode) {
         return [];
     }
     let distance = {};
-    let unvisted = new Set(Object.keys(graph));
+    let unvisited = new Set(Object.keys(graph));
 
     for(let node in graph) {
         distance[node] = Infinity;
@@ -11,17 +11,17 @@ function dijkstra(graph, sourceNode) {
     distance[sourceNode] = 0;
     
 
-    while(unvisted.size > 0) {
+    while(unvisited.size > 0) {
         let closeNode = null;
         let minimum = Infinity;
 
-        for(let node of unvisted) {
+        for(let node of unvisited) {
             if(distance[node] <= minimum) {
                 closeNode = node;
                 minimum = distance[node];
             }
         }
-        unvisted.delete(closeNode);
+        unvisited.delete(closeNode);
         for(let neighbor in graph[closeNode]) {
             let edgeWeight = graph[closeNode][neighbor];
             let newDistance = distance[closeNode] + edgeWeight;
